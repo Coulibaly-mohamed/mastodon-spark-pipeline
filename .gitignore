@@ -1,0 +1,10 @@
+.env
+__pycache__/
+.ipynb_checkpoints/
+data/sentiment140/*
+!data/sentiment140/.gitkeep
+ml/models/sentiment_lr/
+spark-warehouse/
+metastore_db/
+derby.log
+outputs/*.csv
