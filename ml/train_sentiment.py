@@ -44,7 +44,10 @@ def evaluate(pred, name):
         "f1": mc("f1"),
         "precision": mc("weightedPrecision"),
         "recall": mc("weightedRecall"),
-        "auc": BinaryClassificationEvaluator(labelCol="label", metricName="areaUnderROC").evaluate(pred),
+        # AUC calculée sur la probabilité (rawPrediction de NaiveBayes = log-vraisemblances non normalisées,
+        # inutilisables comme score de classement -> AUC faussée)
+        "auc": BinaryClassificationEvaluator(labelCol="label", rawPredictionCol="probability",
+                                             metricName="areaUnderROC").evaluate(pred),
     }
     print(f"\n== {name} ==")
     for k, v in metrics.items():
